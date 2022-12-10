@@ -1,0 +1,51 @@
+.cart-container, .menu-container, .action-buttons {
+    border: 1px solid black;
+}
+
+.page-container {
+  border: 1px solid black;
+  display: grid;
+  gird-auto-flow: row;
+  justify-content: center;
+}
+
+.content {
+  width: 1000px;
+  max-width: 1000px;
+  border: 1px solid black;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.menu-item {
+  margin: 5px 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.menu-item-detail {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  color: white;
+  text-align: right;
+}
+
+.menu-item-detail .price {
+  font-size: 30px;
+}
+
+.menu-item-detail .category {
+  padding: 3px 5px;
+  background: white;
+  font-size: 10px;
+  color: black;
+  border-radius: 5px;
+  width: fit-content;
+}
