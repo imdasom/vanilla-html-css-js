@@ -3,83 +3,44 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="./index.css">
-	<script src="./index.js"></script>
+	<link rel="stylesheet" href="./modal.css">
+	<script defer src="./modal.js"></script>
+	<script defer src="./db.js"></script>
+	<script defer src="./index.js"></script>
 	<title>JS Bin</title>
 </head>
 <body>
 	<div class="page-container">
-		<h1>카페 메뉴주문</h1>
+		<h1 class="page-title">today's coffee</h1>
+		<section class="header-container edit-mode-container">
+			<div>메뉴 편집모드</div>
+			<div class="edit-mode-button-container">
+				<button class="add-button secondary">메뉴등록</button>
+				<button class="close-edit-button secondary">편집모드 종료</button>
+			</div>
+		</section>
+		<section class="header-container cart-container">
+			<ul class="cart-list"></ul>
+			<div class="cart-price">
+				<label>총 결제금액</label>
+				<div class="total-price">0</div>
+			</div>
+		</section>
 		<div class="content">
-			<section class="cart-container">
-				<h2>장바구니</h2>
-			</section>
-			<section class="menu-container">
-				<h2>메뉴</h2>
-				<ul class="menu-list">
-					<li class="menu-item">
-						<img src="https://picsum.photos/seed/1/200/300" width="200" height="200"/>
-						<div class="menu-item-detail">
-							<div class="category">에스프레소</div>
-							<div class="price">4,000</div>
-							<div class="name">아메리카노</div>
-						</div>
-					</li>
-					<li class="menu-item">
-						<img src="https://picsum.photos/seed/2/200/300" width="200" height="200"/>
-						<div class="menu-item-detail">
-							<div class="category">에스프레소</div>
-							<div class="price">4,000</div>
-							<div class="name">아메리카노</div>
-						</div>
-					</li>
-					<li class="menu-item">
-						<img src="https://picsum.photos/seed/3/200/300" width="200" height="200"/>
-						<div class="menu-item-detail">
-							<div class="category">에스프레소</div>
-							<div class="price">4,000</div>
-							<div class="name">아메리카노</div>
-						</div>
-					</li>
-					<li class="menu-item">
-						<img src="https://picsum.photos/seed/4/200/300" width="200" height="200"/>
-						<div class="menu-item-detail">
-							<div class="category">에스프레소</div>
-							<div class="price">4,000</div>
-							<div class="name">아메리카노</div>
-						</div>
-					</li>
-					<li class="menu-item">
-						<img src="https://picsum.photos/seed/5/200/300" width="200" height="200"/>
-						<div class="menu-item-detail">
-							<div class="category">에스프레소</div>
-							<div class="price">4,000</div>
-							<div class="name">아메리카노</div>
-						</div>
-					</li>
-					<li class="menu-item">
-						<img src="https://picsum.photos/seed/6/200/300" width="200" height="200"/>
-						<div class="menu-item-detail">
-							<div class="category">에스프레소</div>
-							<div class="price">4,000</div>
-							<div class="name">아메리카노</div>
-						</div>
-					</li>
-					<li class="menu-item">
-						<img src="https://picsum.photos/seed/7/200/300" width="200" height="200"/>
-						<div class="menu-item-detail">
-							<div class="category">에스프레소</div>
-							<div class="price">4,000</div>
-							<div class="name">아메리카노</div>
-						</div>
-					</li>
-				</ul>
-			</section>
-			<section class="action-buttons">
-				<button class="edit-button">메뉴편집</button>
-				<button class="add-button">메뉴등록</button>
-			</section>
+			<div class="content-wrapper">
+				<section class="menu-container">
+					<ul class="menu-list"></ul>
+				</section>
+				<section class="action-button-container">
+					<button class="edit-button primary">메뉴편집</button>
+				</section>
+			</div>
 		</div>
+	</div>
+	<div class="modal-container" style="display: none;">
 	</div>
 </body>
 </html>

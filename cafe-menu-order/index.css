@@ -1,18 +1,134 @@
-.cart-container, .menu-container, .action-buttons {
-    border: 1px solid black;
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Poiret+One&display=swap');
+
+/* reset css */
+body {
+  margin: 0;
+  padding: 0;
+}
+/* end of reset css */
+
+/* global css */
+:root {
+  --primary-color: pink;
+  --primary-point-color: #ff007b;
+}
+
+* {
+  font-family: Pretendard;
+  font-weight: 200;
+}
+/* end of global css */
+
+.cart-container, .menu-container, .action-button-container {
+    /*border: 1px solid black;*/
+}
+
+.page-title {
+  font-family: 'Fugaz One', cursive;
+  text-align: center;
 }
 
 .page-container {
-  border: 1px solid black;
   display: grid;
   gird-auto-flow: row;
   justify-content: center;
+  gap: 30px;
 }
 
 .content {
-  width: 1000px;
-  max-width: 1000px;
-  border: 1px solid black;
+  width: 100%;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.content-wrapper {
+  width: 800px;
+  max-width: 800px;
+}
+
+.header-container {
+  position: sticky;
+  top: 0;
+  background: var(--primary-color);
+  color: var(--primary-point-color);
+  z-index: 5;
+  width: 100vw;
+  height: 200px;
+}
+
+.page-container .edit-mode-container {
+  display: none;
+}
+
+.page-container.edit .edit-mode-container {
+  background: var(--primary-point-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.page-container.edit .cart-container {
+  display: none;
+}
+
+.page-container .cart-container {
+  background: var(--primary-color);
+  color: var(--primary-point-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-list {
+  list-style: none;
+  margin: 0;
+  padding: 30px;
+  overflow: scroll;
+
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 10px;
+  grid-auto-columns: max-content;
+}
+
+.cart-price {
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cart-price label {
+  font-size: 12px;
+}
+
+.cart-price .total-price {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.cart-list .delete-button,
+.page-container.edit .menu-list .delete-button {
+  display: unset;
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  background: var(--primary-point-color);
+  color: white;
+  border-radius: 50%;
+  font-size: 15px;
+  padding: 0px 6px;
+}
+
+.menu-list .delete-button {
+  display: none;
 }
 
 .menu-list {
@@ -20,12 +136,36 @@
   padding: 0;
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
+}
+
+.menu-list .menu-item {
+  width: 200px;
+  height: 200px;
+}
+
+.cart-list .menu-item {
+  width: 100px;
+  height: 100px;
 }
 
 .menu-item {
   margin: 5px 10px;
   position: relative;
   cursor: pointer;
+}
+
+.menu-item.updated {
+  border: 1px solid var(--primary-point-color);
+}
+
+.menu-item.deleted {
+  opacity: 0.5;
+}
+
+.menu-item img {
+  width: inherit;
+  height: inherit;
 }
 
 .menu-item-detail {
@@ -35,10 +175,25 @@
   padding: 10px;
   color: white;
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .menu-item-detail .price {
   font-size: 30px;
+}
+
+.cart-list .menu-item-detail .price {
+  font-size: 20px;
+}
+
+.cart-list .menu-item-detail .category {
+  display: none;
+}
+
+.cart-list .menu-item-detail .name {
+  font-size: 10px;
 }
 
 .menu-item-detail .category {
@@ -49,3 +204,54 @@
   border-radius: 5px;
   width: fit-content;
 }
+
+button {
+  cursor: pointer;
+}
+
+.action-button-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  justify-content: end;
+}
+
+button.primary {
+  padding: 10px 20px;
+  font-size: 12px;
+  color: var(--primary-point-color);
+  border: none;
+  background: none;
+}
+
+button.secondary {
+  padding: 10px 20px;
+  font-size: 12px;
+  color: var(--primary-point-color);
+  border: none;
+  background: white;
+  border-radius: 5px;
+  min-width: 100px;
+}
+
+/* new-menu modal */
+.menu-form-container {
+  display: grid;
+  grid-auto-flow: row;
+  justify-content: flex-end;
+  grid-template-columns: 100%;
+  gap: 10px;
+}
+
+.menu-form {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 10px;
+}
+
+.menu-form input {
+  padding: 10px 20px;
+  border: none;
+  border-bottom: 1px solid var(--primary-point-color);
+}
+/* end of new-menu modal */
