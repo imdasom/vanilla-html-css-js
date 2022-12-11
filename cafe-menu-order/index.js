@@ -1,23 +1,31 @@
 const HtmlManager = {
   getNewMenuHtml: (menu) => {
+    const categoryList = CategoryDB.select();
     return '' +
       '<div class="menu-form-container">' +
       '  <form class="menu-form">' +
       `    <input type="hidden" name="id" value="${menu?.id || ''}"/>` +
       `    <input type="text" placeholder="name" name="name" value="${menu?.name || ''}"/>` +
       `    <input type="number" placeholder="price" name="price" value="${menu?.price}"/>` +
-      `    <input type="text" placeholder="category" name="category" value="${menu?.category || ''}"/>` +
+      `    <div>` +
+      categoryList.map(category => {
+        return `<input type="radio" id="category${category.id}" name="category" value="${category.id}" ${menu.categoryId === category.id ? 'checked' : ''}/><label for="category1">${category.name}</label>`;
+      }).join('') +
+      // TODO 신규 카테고리 등록가능하도록 하기
+      `      <br/><input type="radio" id="categoryNew" name="category" /><label for="categoryNew">신규 카테고리</label><input type="text" placeholder="카테고리명"/>` +
+      `    </div>` +
       '  </form>' +
       '  <button class="submit-menu-button primary">submit</button>' +
       '</div>'
   },
   getMenuHtml: (menu) => {
+    const category = CategoryDB.selectById(menu.categoryId);
     return '' +
       `<li class="menu-item" data-id="${menu.id}">` +
       `  <img src="https://picsum.photos/seed/${menu.id}/200/300" />` +
       '  <div class="delete-button">-</div>' +
       '  <div class="menu-item-detail">' +
-      `    <div class="category">${menu.category}</div>` +
+      `    <div class="category">${category.name}</div>` +
       `    <div class="price">${menu.price}</div>` +
       `    <div class="name">${menu.name}</div>` +
       '  </div>' +
