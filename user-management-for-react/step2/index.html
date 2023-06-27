@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/user-management-for-react/step2/index.css">
+    <script defer src="/user-management-for-react/step2/index.js"></script>
+    <script defer src="/user-management-for-react/step2/user-db.js"></script>
+    <title>회원관리</title>
+    <meta name="description" content="Vanilla HTML+CSS+JS User Management">
+    <meta name="author" content="imdasom">
+</head>
+<body>
+<div class="page-container">
+    <h1 class="page-title">회원관리</h1>
+    <div class="page-description">
+        Step2. 회원을 추가하는 이벤트를 만들어봅니다! 더불어 회원목록도 렌더링해줍니다!
+    </div>
+    <div class="page-content">
+        <div class="section add-form">
+            <h3>회원등록</h3>
+            <form class="user-add-form">
+                <div class="form-wrapper">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" />
+                </div>
+                <div class="form-wrapper">
+                    <label for="birth">생년월일</label>
+                    <input type="text" id="birth" placeholder="YYYY/MM/DD"/>
+                </div>
+                <div class="form-wrapper">
+                    <label>성별</label>
+                    <div>
+                        <label for="genderF">남</label>
+                        <input type="radio" name="gender" id="genderF" value="F" checked />
+                        <label for="genderM">여</label>
+                        <input type="radio" name="gender" id="genderM" value="M" />
+                    </div>
+                </div>
+                <div class="form-wrapper">
+                    <label for="profileImage">프로필이미지</label>
+                    <input type="file" id="profileImage" />
+                </div>
+            </form>
+            <button type="submit" class="submit-button">추가</button>
+        </div>
+        <div class="section">
+            <h3>회원목록</h3>
+            <ul class="user-list">
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
