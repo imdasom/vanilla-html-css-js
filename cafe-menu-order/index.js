@@ -4,6 +4,8 @@ const HtmlManager = {
       '<div class="menu-form-container">' +
       '  <form class="menu-form">' +
       `    <input type="hidden" name="id" value="${menu?.id || ''}"/>` +
+      `    <input type="file" name="image-input" class="onChangeImageFile" />` +
+      `    <img name="image-preview" class="image-preview" src="${menu?.imageUrl}" />` +
       `    <input type="text" placeholder="name" name="name" value="${menu?.name || ''}"/>` +
       `    <input type="number" placeholder="price" name="price" value="${menu?.price}"/>` +
       `    <input type="text" placeholder="category" name="category" value="${menu?.category || ''}"/>` +
@@ -14,7 +16,7 @@ const HtmlManager = {
   getMenuHtml: (menu) => {
     return '' +
       `<li class="menu-item" data-id="${menu.id}">` +
-      `  <img src="https://picsum.photos/seed/${menu.id}/200/300" />` +
+      `  <img class="image" src="${menu.imageUrl}" />` +
       '  <div class="delete-button">-</div>' +
       '  <div class="menu-item-detail">' +
       `    <div class="category">${menu.category}</div>` +
@@ -27,6 +29,7 @@ const HtmlManager = {
     $menu.querySelector('.name').textContent = menu?.name || '';
     $menu.querySelector('.price').textContent = menu?.price || 0;
     $menu.querySelector('.category').textContent = menu?.category || '';
+    $menu.querySelector('.image').src = menu?.imageUrl || '';
   }
 }
 
@@ -89,6 +92,14 @@ document.addEventListener('click', function onClickEditMenu(event) {
   });
 });
 
+document.addEventListener('change', function onChangeImageFile(event) {
+  const $target = event.target;
+  if (!$target.classList.contains('onChangeImageFile')) return;
+  const file = event.target.files[0];
+  const imageUrl = URL.createObjectURL(file);
+  event.target.parentElement.querySelector('.image-preview').src = imageUrl;
+})
+
 document.addEventListener('click', function deleteCartItem(event) {
   const $target = event.target;
   if (!$target.classList.contains('delete-button')) return;
@@ -110,14 +121,15 @@ document.addEventListener('click', function onAddOrUpdateMenu(event) {
   const $name = document.querySelector('.menu-form [name="name"]');
   const $price = document.querySelector('.menu-form [name="price"]');
   const $category = document.querySelector('.menu-form [name="category"]');
+  const $imagePreview = document.querySelector('.menu-form [name="image-preview"]');
   const isUpdateMode = !!$id.value;
-
   if (isUpdateMode) {
     const newMenu = {
-      id: $id.value,
+      id: Number($id.value),
       name: $name.value,
-      price: $price.value,
+      price: Number($price.value),
       category: $category.value,
+      imageUrl: $imagePreview.src
     };
     MenuDB.update(newMenu);
     const $menuItem = document.querySelector(`.menu-list .menu-item[data-id="${newMenu.id}"]`);
@@ -126,12 +138,11 @@ document.addEventListener('click', function onAddOrUpdateMenu(event) {
     return;
   }
 
-  const imageUrl = `https://picsum.photos/seed/${new Date().getTime()}/200/300`;
   const newMenu = {
     name: $name.value,
     price: $price.value,
     category: $category.value,
-    imageUrl
+    imageUrl: $imagePreview.src,
   };
   const menu = MenuDB.add(newMenu);
   const menuHtml = HtmlManager.getMenuHtml(menu);
